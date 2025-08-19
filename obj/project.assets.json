@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Estudiante\\documentos\\gitHub\\laboratorio\\laboratorio.csproj",
+      "projectUniqueName": "C:\\Users\\Estudiante\\Documents\\GitHub\\laboratorio\\laboratorio.csproj",
       "projectName": "laboratorio",
-      "projectPath": "C:\\Users\\Estudiante\\documentos\\gitHub\\laboratorio\\laboratorio.csproj",
+      "projectPath": "C:\\Users\\Estudiante\\Documents\\GitHub\\laboratorio\\laboratorio.csproj",
       "packagesPath": "C:\\Users\\Estudiante\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Estudiante\\documentos\\gitHub\\laboratorio\\obj\\",
+      "outputPath": "C:\\Users\\Estudiante\\Documents\\GitHub\\laboratorio\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Estudiante\\AppData\\Roaming\\NuGet\\NuGet.Config"
