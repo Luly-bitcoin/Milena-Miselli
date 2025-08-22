@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Estudiante\\Documents\\GitHub\\laboratorio\\laboratorio.csproj": {}
+    "C:\\Users\\milen\\OneDrive\\Documentos\\GitHub\\Nueva carpeta\\nutri\\laboratorio\\laboratorio.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Estudiante\\Documents\\GitHub\\laboratorio\\laboratorio.csproj": {
+    "C:\\Users\\milen\\OneDrive\\Documentos\\GitHub\\Nueva carpeta\\nutri\\laboratorio\\laboratorio.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Estudiante\\Documents\\GitHub\\laboratorio\\laboratorio.csproj",
+        "projectUniqueName": "C:\\Users\\milen\\OneDrive\\Documentos\\GitHub\\Nueva carpeta\\nutri\\laboratorio\\laboratorio.csproj",
         "projectName": "laboratorio",
-        "projectPath": "C:\\Users\\Estudiante\\Documents\\GitHub\\laboratorio\\laboratorio.csproj",
-        "packagesPath": "C:\\Users\\Estudiante\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Estudiante\\Documents\\GitHub\\laboratorio\\obj\\",
+        "projectPath": "C:\\Users\\milen\\OneDrive\\Documentos\\GitHub\\Nueva carpeta\\nutri\\laboratorio\\laboratorio.csproj",
+        "packagesPath": "C:\\Users\\milen\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\milen\\OneDrive\\Documentos\\GitHub\\Nueva carpeta\\nutri\\laboratorio\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Estudiante\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\milen\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -42,6 +42,12 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Pomelo.EntityFrameworkCore.MySql": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -61,7 +67,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.413/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
