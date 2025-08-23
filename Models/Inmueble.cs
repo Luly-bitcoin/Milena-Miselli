@@ -4,12 +4,12 @@ namespace Laboratorio.Models
     {
         public int IdInmuebles { get; set; }
         public int IdPropietario { get; set; }
-        public string uso { get; set; }
-        public string tipo { get; set; }
-        public int ambientes { get; set; }
-        public string direccion { get; set; }
-        public string coordenadas { get; set; }
-        public decimal precio { get; set; }
-        public string estado { get; set; }
+        public string Uso { get; set; } = "";
+        public string Tipo { get; set; } = "";
+        public int Ambientes { get; set; }
+        public string Direccion { get; set; } = "";
+        public string? Coordenadas { get; set; }
+        public decimal Precio { get; set; }
+        public string Estado { get; set; } = "";
     }
 }

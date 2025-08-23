@@ -1,8 +1,9 @@
-using Inmobiliaria_.Net_Core.Models;
+using Laboratorio.Models;
 using Microsoft.EntityFrameworkCore;
-using Laboratorio.Models
+
 var builder = WebApplication.CreateBuilder(args);
 
+// Add services to the container.
 builder.Services.AddControllersWithViews();
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
