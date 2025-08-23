@@ -1,0 +1,23 @@
+@model Laboratorio.Models.Inquilino
+@{
+    ViewData["Title"] = "Nuevo Inquilino";
+}
+
+<h1>Nuevo Inquilino</h1>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="Dni" class="control-label"></label>
+        <input asp-for="Dni" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Nombre" class="control-label"></label>
+        <input asp-for="Nombre" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Apellido" class="control-label"></label>
+        <input asp-for="Apellido" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

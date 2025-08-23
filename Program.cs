@@ -1,6 +1,6 @@
 using Inmobiliaria_.Net_Core.Models;
 using Microsoft.EntityFrameworkCore;
-using Laboratorio.Models
+using Laboratorio.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();

@@ -1,0 +1,35 @@
+@model IEnumerable<Laboratorio.Models.Inquilino>
+@{
+    ViewData["Title"] = "Inquilinos";
+}
+
+<h1>Inquilinos</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Nuevo Inquilino</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>DNI</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model)
+{
+        <tr>
+            <td>@item.Dni</td>
+            <td>@item.Nombre</td>
+            <td>@item.Apellido</td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdInquilino">Editar</a> |
+                <a asp-action="Eliminar" asp-route-id="@item.IdInquilino">Eliminar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

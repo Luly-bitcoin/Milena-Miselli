@@ -1,0 +1,21 @@
+@model Laboratorio.Models.Propietario
+@{
+    ViewData["Title"] = "Eliminar Propietario";
+}
+
+<h1>Eliminar Propietario</h1>
+
+<h3>¿Desea eliminar este propietario?</h3>
+<div>
+    <h4>@Model.Nombre @Model.Apellido</h4>
+    <dl class="row">
+        <dt class="col-sm-2">DNI</dt>
+        <dd class="col-sm-10">@Model.Dni</dd>
+    </dl>
+</div>
+
+<form asp-action="Eliminar" method="post">
+    <input type="hidden" asp-for="IdPropietario" />
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>
