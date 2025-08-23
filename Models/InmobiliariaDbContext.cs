@@ -1,10 +1,11 @@
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Laboratorio.Models
 {
-    public class dbContext : DbContext
+    public class InmobiliariaDbContext : DbContext
     {
-        public dbContext(DbContextOptions<DbContext> options) : base(options)
+        public InmobiliariaDbContext(DbContextOptions<InmobiliariaDbContext> options) : base(options)
         {
 
         }
@@ -14,7 +15,7 @@ namespace Laboratorio.Models
         public DbSet<Inquilino> Inquilinos { get; set; }
         public DbSet<Inmueble> Inmuebles { get; set; }
         public DbSet<Contrato> Contratos { get; set; }
-        public DbSet<Pago> Pagos { get; set; }
+        public DbSet<Pagos> Pagos { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<TipoInmueble> TiposInmueble { get; set; }
     }

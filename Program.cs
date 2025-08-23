@@ -1,12 +1,13 @@
 using Laboratorio.Models;
 using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<DbContext>( 
+builder.Services.AddDbContext<InmobiliariaDbContext>(
     options => options.UseMySql(connectionString,
         ServerVersion.AutoDetect(connectionString)));
 

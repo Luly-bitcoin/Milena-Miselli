@@ -1,17 +1,37 @@
 using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Laboratorio.Models
 {
-    public class Pago
+    public class Pagos
     {
-        public int idPagos { get; set; }
-        public int idContrato { get; set; }
-        public int id_usuario_crea { get; set; }
-        public int? id_usuario_anula { get; set; }
-        public int numero_pago { get; set; }
-        public DateTime fecha_pago { get; set; }
-        public decimal importe { get; set; }
-        public string concepto { get; set; }
-        public string estado { get; set; }
+        [Key]
+        [Column("idPagos")]
+        public int IdPagos { get; set; }
+        
+        [Column("idContrato")]
+        public int IdContrato { get; set; }
+        
+        [Column("id_usuario_crea")]
+        public int Id_usuario_crea { get; set; }
+        
+        [Column("id_usuario_anula")]
+        public int? Id_usuario_anula { get; set; }
+        
+        [Column("numero_pago")]
+        public int Numero_pago { get; set; }
+        
+        [Column("fecha_pago")]
+        public DateTime Fecha_pago { get; set; }
+        
+        [Column("importe")]
+        public decimal Importe { get; set; }
+        
+        [Column("concepto")]
+        public string Concepto { get; set; } = "";
+        
+        [Column("estado")]
+        public string Estado { get; set; } = "";
     }
 }
