@@ -1,0 +1,37 @@
+@model Laboratorio.Models.Contrato
+
+@{
+    ViewData["Title"] = "Eliminar Contrato";
+}
+
+<h1>Eliminar Contrato</h1>
+
+<h3>¿Está seguro que desea eliminar este contrato?</h3>
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">ID</dt>
+        <dd class="col-sm-10">@Model.IdContratos</dd>
+
+        <dt class="col-sm-2">Id Inquilino</dt>
+        <dd class="col-sm-10">@Model.IdInquilino</dd>
+
+        <dt class="col-sm-2">Id Inmueble</dt>
+        <dd class="col-sm-10">@Model.IdInmueble</dd>
+
+        <dt class="col-sm-2">Monto Mensual</dt>
+        <dd class="col-sm-10">@Model.Monto_mensual.ToString("C")</dd>
+
+        <dt class="col-sm-2">Fecha Inicio</dt>
+        <dd class="col-sm-10">@Model.Fecha_inicio.ToShortDateString()</dd>
+
+        <dt class="col-sm-2">Fecha Fin</dt>
+        <dd class="col-sm-10">@Model.Fecha_fin.ToShortDateString()</dd>
+    </dl>
+</div>
+
+<form asp-action="DeleteConfirmed" method="post">
+    <input type="hidden" asp-for="IdContratos" />
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

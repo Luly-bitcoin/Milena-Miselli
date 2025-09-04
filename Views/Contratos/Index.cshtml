@@ -1,0 +1,42 @@
+@model IEnumerable<Laboratorio.Models.Contrato>
+
+@{
+    ViewData["Title"] = "Contratos";
+}
+
+<h1>Contratos</h1>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Crear nuevo contrato</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Inquilino</th>
+            <th>Inmueble</th>
+            <th>Monto mensual</th>
+            <th>Fecha inicio</th>
+            <th>Fecha fin</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model) {
+        <tr>
+            <td>@item.IdContratos</td>
+            <td>@item.IdInquilino</td>
+            <td>@item.IdInmueble</td>
+            <td>@item.Monto_mensual.ToString("C")</td>
+            <td>@item.Fecha_inicio.ToShortDateString()</td>
+            <td>@item.Fecha_fin.ToShortDateString()</td>
+            <td>
+                <a class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@item.IdContratos">Detalles</a>
+                <a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-id="@item.IdContratos">Editar</a>
+                <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.IdContratos">Eliminar</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

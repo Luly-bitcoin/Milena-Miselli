@@ -1,0 +1,49 @@
+@model Laboratorio.Models.Contrato
+
+@{
+    ViewData["Title"] = "Detalles del Contrato";
+}
+
+<h1>Detalles del Contrato</h1>
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">ID</dt>
+        <dd class="col-sm-10">@Model.IdContratos</dd>
+
+        <dt class="col-sm-2">Id Inquilino</dt>
+        <dd class="col-sm-10">@Model.IdInquilino</dd>
+
+        <dt class="col-sm-2">Id Inmueble</dt>
+        <dd class="col-sm-10">@Model.IdInmueble</dd>
+
+        <dt class="col-sm-2">Id Usuario Crea</dt>
+        <dd class="col-sm-10">@Model.IdUsuario_crea</dd>
+
+        <dt class="col-sm-2">Id Usuario Termina</dt>
+        <dd class="col-sm-10">@Model.IdUsuario_termina</dd>
+
+        <dt class="col-sm-2">Monto Mensual</dt>
+        <dd class="col-sm-10">@Model.Monto_mensual.ToString("C")</dd>
+
+        <dt class="col-sm-2">Fecha Inicio</dt>
+        <dd class="col-sm-10">@Model.Fecha_inicio.ToShortDateString()</dd>
+
+        <dt class="col-sm-2">Fecha Fin</dt>
+        <dd class="col-sm-10">@Model.Fecha_fin.ToShortDateString()</dd>
+
+        <dt class="col-sm-2">Fecha Fin Original</dt>
+        <dd class="col-sm-10">@Model.Fecha_fin_original.ToShortDateString()</dd>
+
+        <dt class="col-sm-2">Fecha Termina Anticipada</dt>
+        <dd class="col-sm-10">@Model.Fecha_termina_anticipada?.ToShortDateString()</dd>
+
+        <dt class="col-sm-2">Multa</dt>
+        <dd class="col-sm-10">@Model.Multa?.ToString("C")</dd>
+    </dl>
+</div>
+
+<p>
+    <a asp-action="Edit" asp-route-id="@Model.IdContratos" class="btn btn-warning">Editar</a>
+    <a asp-action="Index" class="btn btn-secondary">Volver a lista</a>
+</p>
