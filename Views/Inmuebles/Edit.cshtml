@@ -1,0 +1,46 @@
+@model Laboratorio.Models.Inmueble
+
+@{
+    ViewData["Title"] = "Editar Inmueble";
+}
+
+<h1>Editar Inmueble</h1>
+
+<form asp-action="Edit">
+    <input type="hidden" asp-for="IdInmuebles" />
+
+    <div class="form-group">
+        <label asp-for="IdPropietario" class="control-label"></label>
+        <input asp-for="IdPropietario" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Uso" class="control-label"></label>
+        <input asp-for="Uso" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Tipo" class="control-label"></label>
+        <input asp-for="Tipo" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Ambientes" class="control-label"></label>
+        <input asp-for="Ambientes" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Direccion" class="control-label"></label>
+        <input asp-for="Direccion" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Coordenadas" class="control-label"></label>
+        <input asp-for="Coordenadas" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Precio" class="control-label"></label>
+        <input asp-for="Precio" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Estado" class="control-label"></label>
+        <input asp-for="Estado" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary mt-2">Guardar cambios</button>
+    <a asp-action="Index" class="btn btn-secondary mt-2">Cancelar</a>
+</form>
