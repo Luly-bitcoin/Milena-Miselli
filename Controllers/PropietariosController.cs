@@ -6,93 +6,69 @@ namespace Laboratorio.Controllers
 {
     public class PropietariosController : Controller
     {
-        private readonly InmobiliariaDbContext contexto;
+        private readonly LaboratorioContext _context;
 
-        public PropietariosController(InmobiliariaDbContext contexto)
+        public PropietariosController(LaboratorioContext context)
         {
-            this.contexto = contexto;
+            _context = context;
         }
 
-        // GET: Propietarios
-        public ActionResult Index()
+        public IActionResult Index()
         {
-            var lista = contexto.Propietarios.ToList();
+            var lista = _context.Propietarios.ToList();
             return View(lista);
         }
 
-        // GET: Propietarios/Create
-        public ActionResult Create()
+        public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Propietarios/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Propietario propietario)
+        public IActionResult Create(Propietario propietario)
         {
-            try
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
-                {
-                    contexto.Propietarios.Add(propietario);
-                    contexto.SaveChanges();
-                    return RedirectToAction(nameof(Index));
-                }
-                return View(propietario);
+                _context.Propietarios.Add(propietario);
+                _context.SaveChanges();
+                return RedirectToAction(nameof(Index));
             }
-            catch
-            {
-                return View();
-            }
+            return View(propietario);
         }
 
-        // GET: Propietarios/Edit/5
-        public ActionResult Edit(int id)
+        public IActionResult Edit(int id)
         {
-            var p = contexto.Propietarios.Find(id);
+            var p = _context.Propietarios.Find(id);
             return View(p);
         }
 
-        // POST: Propietarios/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Propietario propietario)
+        public IActionResult Edit(int id, Propietario propietario)
         {
-            try
+            if (ModelState.IsValid)
             {
-                contexto.Propietarios.Update(propietario);
-                contexto.SaveChanges();
+                _context.Propietarios.Update(propietario);
+                _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
-            catch
-            {
-                return View();
-            }
+            return View(propietario);
         }
 
-        // GET: Propietarios/Eliminar/5
-        public ActionResult Eliminar(int id)
+        public IActionResult Eliminar(int id)
         {
-            var p = contexto.Propietarios.Find(id);
+            var p = _context.Propietarios.Find(id);
             return View(p);
         }
 
-        // POST: Propietarios/Eliminar/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Eliminar(int id, Propietario propietario)
+        public IActionResult Eliminar(int id, Propietario propietario)
         {
-            try
-            {
-                contexto.Propietarios.Remove(propietario);
-                contexto.SaveChanges();
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            _context.Propietarios.Remove(propietario);
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Index));
         }
     }
 }
