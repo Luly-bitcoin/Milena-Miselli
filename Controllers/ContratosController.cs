@@ -6,9 +6,9 @@ namespace Laboratorio.Controllers
 {
     public class ContratosController : Controller
     {
-        private readonly LaboratorioContext _context;
+        private readonly InmobiliariaDbContext _context;
 
-        public ContratosController(LaboratorioContext context)
+        public ContratosController(InmobiliariaDbContext context)
         {
             _context = context;
         }
