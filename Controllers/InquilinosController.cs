@@ -6,17 +6,17 @@ namespace Laboratorio.Controllers
 {
     public class InquilinosController : Controller
     {
-        private readonly InmobiliariaDbContext contexto;
+        private readonly LaboratorioContext _context;
 
-        public InquilinosController(InmobiliariaDbContext contexto)
+        public InquilinosController(LaboratorioContext context)
         {
-            this.contexto = contexto;
+            _context = context;
         }
 
         // GET: Inquilinos
         public ActionResult Index()
         {
-            var lista = contexto.Inquilinos.ToList();
+            var lista = _context.Inquilinos.ToList();
             return View(lista);
         }
 
@@ -35,8 +35,8 @@ namespace Laboratorio.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    contexto.Inquilinos.Add(inquilino);
-                    contexto.SaveChanges();
+                    _context.Inquilinos.Add(inquilino);
+                    _context.SaveChanges();
                     return RedirectToAction(nameof(Index));
                 }
                 return View(inquilino);
@@ -50,7 +50,7 @@ namespace Laboratorio.Controllers
         // GET: Inquilinos/Edit/5
         public ActionResult Edit(int id)
         {
-            var i = contexto.Inquilinos.Find(id);
+            var i = _context.Inquilinos.Find(id);
             return View(i);
         }
 
@@ -61,8 +61,8 @@ namespace Laboratorio.Controllers
         {
             try
             {
-                contexto.Inquilinos.Update(inquilino);
-                contexto.SaveChanges();
+                _context.Inquilinos.Update(inquilino);
+                _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -74,7 +74,7 @@ namespace Laboratorio.Controllers
         // GET: Inquilinos/Eliminar/5
         public ActionResult Eliminar(int id)
         {
-            var i = contexto.Inquilinos.Find(id);
+            var i = _context.Inquilinos.Find(id);
             return View(i);
         }
 
@@ -85,8 +85,8 @@ namespace Laboratorio.Controllers
         {
             try
             {
-                contexto.Inquilinos.Remove(inquilino);
-                contexto.SaveChanges();
+                _context.Inquilinos.Remove(inquilino);
+                _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             catch

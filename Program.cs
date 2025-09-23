@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<InmobiliariaDbContext>(
+builder.Services.AddDbContext<LaboratorioContext>(
     options => options.UseMySql(connectionString,
         ServerVersion.AutoDetect(connectionString)));
 
