@@ -1,5 +1,6 @@
 using Laboratorio.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.Cookies; // <- agregar esto
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,16 +8,24 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<LaboratorioContext>(
+builder.Services.AddDbContext<InmobiliariaDbContext>(
     options => options.UseMySql(connectionString,
         ServerVersion.AutoDetect(connectionString)));
+
+// --- Agregar autenticación por cookies ---
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Usuarios/Login";
+        options.LogoutPath = "/Usuarios/Logout";
+        options.ExpireTimeSpan = TimeSpan.FromHours(1);
+    });
 
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
@@ -25,10 +34,13 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+// --- Habilitar autenticación ---
+app.UseAuthentication();
 app.UseAuthorization();
 
+// Cambiar ruta por defecto a Usuarios/Login
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Usuarios}/{action=Login}/{id?}");
 
 app.Run();

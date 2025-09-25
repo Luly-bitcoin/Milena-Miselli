@@ -1,0 +1,31 @@
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <div class="login-container">
+        <h2>Iniciar Sesión</h2>
+
+        <form asp-action="Login" method="post">
+            <label>Email</label>
+            <input type="email" name="email" placeholder="tucorreo@dominio.com" required />
+            <br><br>
+            <label>Contraseña</label>
+            <input type="password" name="contrasena" placeholder="********" required />
+            <br><br>
+            <button type="submit">Ingresar</button>
+        </form>
+
+        @if(ViewBag.Error != null)
+        {
+            <div class="error-message">@ViewBag.Error</div>
+        }
+    </div>
+</body>
+</html>
