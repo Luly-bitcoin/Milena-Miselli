@@ -2,6 +2,8 @@
     ViewData["Title"] = "Inicio";
 }
 
+<h2>Bienvenido, @User.Identity.Name </h2>
+<a asp-controller="Usuarios" asp-action="Logout">Cerrar sesion</a>
 <!-- HERO CON IMAGEN -->
 <div class="p-5 mb-4 bg-light rounded-3 position-relative" style="background-image: url('/images/fondo.jpg'); background-size: cover; background-position: center; color: white;">
     <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0,0,0,0.6);"></div>
