@@ -33,5 +33,15 @@ namespace Laboratorio.Models
         
         [Column("estado")]
         public string Estado { get; set; } = "";
+
+        // Relaciones de navegación
+        [ForeignKey("IdContrato")]
+        public Contrato? Contrato { get; set; }
+
+        [ForeignKey("Id_usuario_crea")]
+        public Usuario? UsuarioCrea { get; set; }
+
+        [ForeignKey("Id_usuario_anula")]
+        public Usuario? UsuarioAnula { get; set; }
     }
 }

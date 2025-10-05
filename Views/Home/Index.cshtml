@@ -1,62 +1,177 @@
 ﻿@{
-    ViewData["Title"] = "Inicio";
+    ViewData["Title"] = "Dashboard";
+    var estadisticas = ViewBag.Estadisticas as dynamic;
 }
 
-<h2>Bienvenido, @User.Identity.Name </h2>
-<a asp-controller="Usuarios" asp-action="Logout">Cerrar sesion</a>
-<!-- HERO CON IMAGEN -->
-<div class="p-5 mb-4 bg-light rounded-3 position-relative" style="background-image: url('/images/fondo.jpg'); background-size: cover; background-position: center; color: white;">
-    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0,0,0,0.6);"></div>
-    <div class="container py-5 text-center position-relative">
-        <h1 class="display-4 fw-bold">Bienvenido a Inmobiliaria Premium</h1>
-        <p class="fs-5 mb-4">Gestioná inmuebles, contratos y pagos con eficiencia y estilo.</p>
-        <a href="@Url.Action("Index", "Inmuebles")" class="btn btn-warning btn-lg">
-            <i class="bi bi-house-fill"></i> Ver Inmuebles
-        </a>
+<!-- HERO SECTION -->
+<div class="p-5 mb-4 bg-primary text-white rounded-3">
+    <div class="container py-5 text-center">
+        <h1 class="display-4 fw-bold">
+            <i class="fas fa-building"></i> Bienvenido a Inmobiliaria
+        </h1>
+        <p class="fs-5 mb-4">Sistema de gestión integral para inmobiliarias</p>
+        <p class="lead">Hola, <strong>@User.Identity?.Name</strong> - @DateTime.Now.ToString("dddd, dd MMMM yyyy")</p>
     </div>
 </div>
 
-<!-- SECCIÓN DE BENEFICIOS -->
-<div class="container my-5">
-    <div class="row text-center">
-        <div class="col-md-4 mb-4">
-            <i class="bi bi-person-check display-4 text-primary"></i>
-            <h4 class="mt-3">Control Total</h4>
-            <p>Gestioná contratos, pagos y propiedades desde un solo lugar.</p>
-        </div>
-        <div class="col-md-4 mb-4">
-            <i class="bi bi-speedometer2 display-4 text-success"></i>
-            <h4 class="mt-3">Rápido y Eficiente</h4>
-            <p>Interfaz ágil y moderna para ahorrar tiempo en tus operaciones.</p>
-        </div>
-        <div class="col-md-4 mb-4">
-            <i class="bi bi-shield-lock display-4 text-danger"></i>
-            <h4 class="mt-3">Seguridad</h4>
-            <p>Acceso con roles y permisos para mantener todo seguro y controlado.</p>
-        </div>
-    </div>
-</div>
-
-<!-- TARJETAS DE ACCESO RÁPIDO -->
+<!-- ESTADÍSTICAS -->
 <div class="container mb-5">
-    <div class="row text-center">
-        <div class="col-md-6 mb-4">
-            <div class="card h-100 shadow-sm">
+    <h2 class="mb-4"><i class="fas fa-chart-bar"></i> Resumen del Sistema</h2>
+    <div class="row">
+        <div class="col-md-2 mb-3">
+            <div class="card bg-primary text-white text-center">
                 <div class="card-body">
-                    <i class="bi bi-building display-3 text-info mb-3"></i>
-                    <h5 class="card-title">Inmuebles</h5>
-                    <p class="card-text">Ver, crear y editar propiedades disponibles en la inmobiliaria.</p>
-                    <a href="@Url.Action("Index", "Inmuebles")" class="btn btn-outline-info">Gestionar Inmuebles</a>
+                    <i class="fas fa-user-tie fa-2x mb-2"></i>
+                    <h4>@estadisticas?.TotalPropietarios</h4>
+                    <p class="mb-0">Propietarios</p>
                 </div>
             </div>
         </div>
-        <div class="col-md-6 mb-4">
-            <div class="card h-100 shadow-sm">
+        <div class="col-md-2 mb-3">
+            <div class="card bg-info text-white text-center">
                 <div class="card-body">
-                    <i class="bi bi-file-earmark-text display-3 text-warning mb-3"></i>
+                    <i class="fas fa-user fa-2x mb-2"></i>
+                    <h4>@estadisticas?.TotalInquilinos</h4>
+                    <p class="mb-0">Inquilinos</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 mb-3">
+            <div class="card bg-success text-white text-center">
+                <div class="card-body">
+                    <i class="fas fa-building fa-2x mb-2"></i>
+                    <h4>@estadisticas?.TotalInmuebles</h4>
+                    <p class="mb-0">Inmuebles</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 mb-3">
+            <div class="card bg-warning text-white text-center">
+                <div class="card-body">
+                    <i class="fas fa-check-circle fa-2x mb-2"></i>
+                    <h4>@estadisticas?.InmueblesDisponibles</h4>
+                    <p class="mb-0">Disponibles</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 mb-3">
+            <div class="card bg-danger text-white text-center">
+                <div class="card-body">
+                    <i class="fas fa-file-contract fa-2x mb-2"></i>
+                    <h4>@estadisticas?.ContratosVigentes</h4>
+                    <p class="mb-0">Contratos Activos</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 mb-3">
+            <div class="card bg-secondary text-white text-center">
+                <div class="card-body">
+                    <i class="fas fa-money-bill-wave fa-2x mb-2"></i>
+                    <h4>@estadisticas?.TotalPagos</h4>
+                    <p class="mb-0">Pagos</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ACCESOS RÁPIDOS -->
+<div class="container mb-5">
+    <h2 class="mb-4"><i class="fas fa-rocket"></i> Accesos Rápidos</h2>
+    <div class="row">
+        <div class="col-md-3 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <i class="fas fa-building fa-3x text-primary mb-3"></i>
+                    <h5 class="card-title">Inmuebles</h5>
+                    <p class="card-text">Gestionar propiedades</p>
+                    <a href="@Url.Action("Index", "Inmuebles")" class="btn btn-primary">
+                        <i class="fas fa-list"></i> Ver Todos
+                    </a>
+                    <a href="@Url.Action("Disponibles", "Inmuebles")" class="btn btn-outline-success mt-2">
+                        <i class="fas fa-check"></i> Disponibles
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <i class="fas fa-file-contract fa-3x text-warning mb-3"></i>
                     <h5 class="card-title">Contratos</h5>
-                    <p class="card-text">Listá y administrá los contratos activos, vencidos o por renovar.</p>
-                    <a href="@Url.Action("Index", "Contratos")" class="btn btn-outline-warning">Ver Contratos</a>
+                    <p class="card-text">Administrar contratos</p>
+                    <a href="@Url.Action("Index", "Contratos")" class="btn btn-warning">
+                        <i class="fas fa-list"></i> Ver Todos
+                    </a>
+                    <a href="@Url.Action("Vigentes", "Contratos")" class="btn btn-outline-info mt-2">
+                        <i class="fas fa-clock"></i> Vigentes
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <i class="fas fa-users fa-3x text-info mb-3"></i>
+                    <h5 class="card-title">Personas</h5>
+                    <p class="card-text">Gestionar personas</p>
+                    <a href="@Url.Action("Index", "Propietarios")" class="btn btn-info">
+                        <i class="fas fa-user-tie"></i> Propietarios
+                    </a>
+                    <a href="@Url.Action("Index", "Inquilinos")" class="btn btn-outline-info mt-2">
+                        <i class="fas fa-user"></i> Inquilinos
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <i class="fas fa-money-bill-wave fa-3x text-success mb-3"></i>
+                    <h5 class="card-title">Pagos</h5>
+                    <p class="card-text">Administrar pagos</p>
+                    <a href="@Url.Action("Index", "Pagos")" class="btn btn-success">
+                        <i class="fas fa-list"></i> Ver Pagos
+                    </a>
+                    @if (User.IsInRole("Administrador"))
+                    {
+                        <a href="@Url.Action("Index", "Usuarios")" class="btn btn-outline-danger mt-2">
+                            <i class="fas fa-users-cog"></i> Usuarios
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ACCIONES RECIENTES -->
+<div class="container mb-5">
+    <h2 class="mb-4"><i class="fas fa-history"></i> Acciones Recientes</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5><i class="fas fa-file-contract"></i> Contratos Próximos a Vencer</h5>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted">Los contratos que vencen en los próximos 30 días aparecerán aquí.</p>
+                    <a href="@Url.Action("Vigentes", "Contratos")" class="btn btn-outline-warning">
+                        <i class="fas fa-eye"></i> Ver Contratos Vigentes
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5><i class="fas fa-building"></i> Inmuebles Disponibles</h5>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted">Propiedades listas para alquilar.</p>
+                    <a href="@Url.Action("Disponibles", "Inmuebles")" class="btn btn-outline-success">
+                        <i class="fas fa-eye"></i> Ver Disponibles
+                    </a>
                 </div>
             </div>
         </div>

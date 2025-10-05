@@ -1,0 +1,74 @@
+@model Laboratorio.Models.Pagos
+
+@{
+    ViewData["Title"] = "Eliminar Pago";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-trash"></i> Eliminar Pago #@Model.Numero_pago
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-warning">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        ¿Está seguro que desea eliminar este pago? Esta acción no se puede deshacer.
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <dl class="row">
+                                <dt class="col-sm-4">Número de Pago:</dt>
+                                <dd class="col-sm-8">@Model.Numero_pago</dd>
+                                
+                                <dt class="col-sm-4">Fecha de Pago:</dt>
+                                <dd class="col-sm-8">@Model.Fecha_pago.ToString("dd/MM/yyyy")</dd>
+                                
+                                <dt class="col-sm-4">Importe:</dt>
+                                <dd class="col-sm-8">$@Model.Importe.ToString("N2")</dd>
+                                
+                                <dt class="col-sm-4">Concepto:</dt>
+                                <dd class="col-sm-8">@Model.Concepto</dd>
+                            </dl>
+                        </div>
+                        <div class="col-md-6">
+                            <dl class="row">
+                                <dt class="col-sm-4">Estado:</dt>
+                                <dd class="col-sm-8">
+                                    <span class="badge @(Model.Estado == "Activo" ? "bg-success" : "bg-secondary")">
+                                        @Model.Estado
+                                    </span>
+                                </dd>
+                                
+                                <dt class="col-sm-4">Contrato:</dt>
+                                <dd class="col-sm-8">#@Model.IdContrato</dd>
+                                
+                                <dt class="col-sm-4">Inquilino:</dt>
+                                <dd class="col-sm-8">@Model.Contrato?.Inquilino?.Nombre @Model.Contrato?.Inquilino?.Apellido</dd>
+                                
+                                <dt class="col-sm-4">Inmueble:</dt>
+                                <dd class="col-sm-8">@Model.Contrato?.Inmueble?.Direccion</dd>
+                            </dl>
+                        </div>
+                    </div>
+                    
+                    <form asp-action="Delete" method="post">
+                        <input asp-for="IdPagos" type="hidden" />
+                        <div class="d-flex justify-content-between">
+                            <a asp-action="PorContrato" asp-route-contratoId="@Model.IdContrato" class="btn btn-secondary">
+                                <i class="fas fa-arrow-left"></i> Cancelar
+                            </a>
+                            <button type="submit" class="btn btn-danger">
+                                <i class="fas fa-trash"></i> Eliminar Pago
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -39,5 +39,18 @@ namespace Laboratorio.Models
         
         [Column("multa")]
         public decimal? Multa { get; set; }
+
+        // Relaciones de navegación
+        [ForeignKey("IdInquilino")]
+        public Inquilino? Inquilino { get; set; }
+
+        [ForeignKey("IdInmueble")]
+        public Inmueble? Inmueble { get; set; }
+
+        [ForeignKey("IdUsuario_crea")]
+        public Usuario? UsuarioCrea { get; set; }
+
+        [ForeignKey("IdUsuario_termina")]
+        public Usuario? UsuarioTermina { get; set; }
     }
 }

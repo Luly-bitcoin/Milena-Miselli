@@ -1,0 +1,83 @@
+@model Laboratorio.Models.Pagos
+
+@{
+    ViewData["Title"] = "Detalles del Pago";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-eye"></i> Detalles del Pago #@Model.Numero_pago
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <dl class="row">
+                                <dt class="col-sm-4">Número de Pago:</dt>
+                                <dd class="col-sm-8">@Model.Numero_pago</dd>
+                                
+                                <dt class="col-sm-4">Fecha de Pago:</dt>
+                                <dd class="col-sm-8">@Model.Fecha_pago.ToString("dd/MM/yyyy")</dd>
+                                
+                                <dt class="col-sm-4">Importe:</dt>
+                                <dd class="col-sm-8">$@Model.Importe.ToString("N2")</dd>
+                                
+                                <dt class="col-sm-4">Concepto:</dt>
+                                <dd class="col-sm-8">@Model.Concepto</dd>
+                                
+                                <dt class="col-sm-4">Estado:</dt>
+                                <dd class="col-sm-8">
+                                    <span class="badge @(Model.Estado == "Activo" ? "bg-success" : "bg-secondary")">
+                                        @Model.Estado
+                                    </span>
+                                </dd>
+                            </dl>
+                        </div>
+                        <div class="col-md-6">
+                            <dl class="row">
+                                <dt class="col-sm-4">Contrato:</dt>
+                                <dd class="col-sm-8">#@Model.IdContrato</dd>
+                                
+                                <dt class="col-sm-4">Inquilino:</dt>
+                                <dd class="col-sm-8">@Model.Contrato?.Inquilino?.Nombre @Model.Contrato?.Inquilino?.Apellido</dd>
+                                
+                                <dt class="col-sm-4">Inmueble:</dt>
+                                <dd class="col-sm-8">@Model.Contrato?.Inmueble?.Direccion</dd>
+                                
+                                <dt class="col-sm-4">Creado por:</dt>
+                                <dd class="col-sm-8">@Model.UsuarioCrea?.Email</dd>
+                                
+                                @if (Model.UsuarioAnula != null)
+                                {
+                                    <dt class="col-sm-4">Anulado por:</dt>
+                                    <dd class="col-sm-8">@Model.UsuarioAnula?.Email</dd>
+                                }
+                            </dl>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between mt-4">
+                        <a asp-action="PorContrato" asp-route-contratoId="@Model.IdContrato" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left"></i> Volver a Pagos
+                        </a>
+                        <div>
+                            <a asp-action="Edit" asp-route-id="@Model.IdPagos" class="btn btn-warning">
+                                <i class="fas fa-edit"></i> Editar
+                            </a>
+                            @if (User.IsInRole("Administrador"))
+                            {
+                                <a asp-action="Delete" asp-route-id="@Model.IdPagos" class="btn btn-danger">
+                                    <i class="fas fa-trash"></i> Eliminar
+                                </a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

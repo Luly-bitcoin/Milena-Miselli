@@ -1,0 +1,85 @@
+@model Laboratorio.Models.Usuario
+
+@{
+    ViewData["Title"] = "Mi Perfil";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Mi Perfil</h3>
+                </div>
+                <div class="card-body">
+                    @if (TempData["Success"] != null)
+                    {
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            @TempData["Success"]
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    }
+                    @if (TempData["Error"] != null)
+                    {
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            @TempData["Error"]
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    }
+                    
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="text-center">
+                                @if (!string.IsNullOrEmpty(Model.Avatar))
+                                {
+                                    <img src="@Model.Avatar" alt="Avatar" class="rounded-circle mb-3" width="150" height="150">
+                                }
+                                else
+                                {
+                                    <i class="fas fa-user-circle text-muted" style="font-size: 150px;"></i>
+                                }
+                                <h4>@Model.Email</h4>
+                                <span class="badge @(Model.Rol == "Administrador" ? "bg-danger" : "bg-info")">
+                                    @Model.Rol
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h5>Cambiar Avatar</h5>
+                                    <form asp-action="CambiarAvatar" method="post" enctype="multipart/form-data" class="mb-3">
+                                        <div class="input-group">
+                                            <input type="file" name="avatar" class="form-control" accept="image/*" required>
+                                            <button type="submit" class="btn btn-primary">Subir Avatar</button>
+                                        </div>
+                                    </form>
+                                    <form asp-action="QuitarAvatar" method="post" class="mb-3">
+                                        <button type="submit" class="btn btn-outline-danger">Quitar Avatar</button>
+                                    </form>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-12">
+                                    <h5>Cambiar Contraseña</h5>
+                                    <form asp-action="CambiarContrasena" method="post">
+                                        <div class="mb-3">
+                                            <label class="form-label">Contraseña Actual</label>
+                                            <input type="password" name="contrasenaActual" class="form-control" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Nueva Contraseña</label>
+                                            <input type="password" name="nuevaContrasena" class="form-control" required>
+                                        </div>
+                                        <button type="submit" class="btn btn-warning">Cambiar Contraseña</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
