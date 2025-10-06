@@ -28,8 +28,8 @@ namespace Laboratorio.Models
         [Column("importe")]
         public decimal Importe { get; set; }
         
-        [Column("concepto")]
-        public string Concepto { get; set; } = "";
+        [NotMapped]
+        public string Concepto { get; set; } = "Alquiler mensual";
         
         [Column("estado")]
         public string Estado { get; set; } = "";

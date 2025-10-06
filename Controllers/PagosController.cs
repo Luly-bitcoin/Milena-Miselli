@@ -16,6 +16,22 @@ namespace Laboratorio.Controllers
             _context = context;
         }
 
+        // GET: Pagos
+        public async Task<IActionResult> Index()
+        {
+            var pagos = await _context.Pagos
+                .Include(p => p.Contrato)
+                .ThenInclude(c => c.Inquilino)
+                .Include(p => p.Contrato)
+                .ThenInclude(c => c.Inmueble)
+                .Include(p => p.UsuarioCrea)
+                .Include(p => p.UsuarioAnula)
+                .OrderByDescending(p => p.Fecha_pago)
+                .ToListAsync();
+
+            return View(pagos);
+        }
+
         // GET: Pagos por Contrato
         public async Task<IActionResult> PorContrato(int contratoId)
         {
@@ -242,3 +258,9 @@ namespace Laboratorio.Controllers
         }
     }
 }
+
+
+
+
+
+

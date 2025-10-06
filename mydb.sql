@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-09-2025 a las 21:40:03
+-- Tiempo de generación: 06-10-2025 a las 00:53:26
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -143,19 +143,19 @@ INSERT INTO `propietarios` (`idPropietario`, `Nombre`, `Apellido`, `direccion`, 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tipoinmueble`
+-- Estructura de tabla para la tabla `tiposinmueble`
 --
 
-CREATE TABLE `tipoinmueble` (
+CREATE TABLE `tiposinmueble` (
   `idTipo` int(11) NOT NULL,
   `descripcion` varchar(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Volcado de datos para la tabla `tipoinmueble`
+-- Volcado de datos para la tabla `tiposinmueble`
 --
 
-INSERT INTO `tipoinmueble` (`idTipo`, `descripcion`) VALUES
+INSERT INTO `tiposinmueble` (`idTipo`, `descripcion`) VALUES
 (1, 'Departamento');
 
 -- --------------------------------------------------------
@@ -167,17 +167,18 @@ INSERT INTO `tipoinmueble` (`idTipo`, `descripcion`) VALUES
 CREATE TABLE `usuarios` (
   `idUsuarios` int(11) NOT NULL,
   `email` varchar(45) NOT NULL,
-  `contraseña` varchar(100) NOT NULL,
+  `contrasena` varchar(100) NOT NULL,
   `estado` varchar(45) DEFAULT NULL,
-  `rol` varchar(20) DEFAULT NULL
+  `rol` varchar(20) DEFAULT NULL,
+  `avatar` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`idUsuarios`, `email`, `contraseña`, `estado`, `rol`) VALUES
-(1, 'admin@inmobiliaria.com', '1234', 'Activo', 'Administrador');
+INSERT INTO `usuarios` (`idUsuarios`, `email`, `contrasena`, `estado`, `rol`, `avatar`) VALUES
+(1, 'admin@inmobiliaria.com', '1234', 'Activo', 'Administrador', '/images/avatars/avatar_1_638952894974978605.jpg');
 
 --
 -- Índices para tablas volcadas
@@ -224,9 +225,9 @@ ALTER TABLE `propietarios`
   ADD UNIQUE KEY `dni` (`dni`);
 
 --
--- Indices de la tabla `tipoinmueble`
+-- Indices de la tabla `tiposinmueble`
 --
-ALTER TABLE `tipoinmueble`
+ALTER TABLE `tiposinmueble`
   ADD PRIMARY KEY (`idTipo`),
   ADD UNIQUE KEY `descripcion_UNIQUE` (`descripcion`);
 
@@ -266,9 +267,9 @@ ALTER TABLE `propietarios`
   MODIFY `idPropietario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT de la tabla `tipoinmueble`
+-- AUTO_INCREMENT de la tabla `tiposinmueble`
 --
-ALTER TABLE `tipoinmueble`
+ALTER TABLE `tiposinmueble`
   MODIFY `idTipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
@@ -295,7 +296,7 @@ ALTER TABLE `contratos`
 --
 ALTER TABLE `inmuebles`
   ADD CONSTRAINT `fk_inmuebles_propietario` FOREIGN KEY (`idPropietario`) REFERENCES `propietarios` (`idPropietario`),
-  ADD CONSTRAINT `fk_tipo_inmuebles` FOREIGN KEY (`tipo`) REFERENCES `tipoinmueble` (`idTipo`);
+  ADD CONSTRAINT `fk_tipo_inmuebles` FOREIGN KEY (`tipo`) REFERENCES `tiposinmueble` (`idTipo`);
 
 --
 -- Filtros para la tabla `pagos`

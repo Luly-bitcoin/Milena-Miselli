@@ -12,10 +12,10 @@ namespace Laboratorio.Models
         [Column("dni")]
         public string Dni { get; set; } = "";
         
-        [Column("nombre")]
+        [Column("Nombre")]
         public string Nombre { get; set; } = "";
         
-        [Column("apellido")]
+        [Column("Apellido")]
         public string Apellido { get; set; } = "";
         
         [Column("direccion")]
