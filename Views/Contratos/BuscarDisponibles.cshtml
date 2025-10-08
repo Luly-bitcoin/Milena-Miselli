@@ -1,0 +1,37 @@
+@model IEnumerable<Laboratorio.Models.Inmueble>
+
+@{
+    ViewData["Title"] = "Inmuebles disponibles";
+}
+
+<h2>Inmuebles disponibles</h2>
+
+@if (Model != null && Model.Any())
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Dirección</th>
+                <th>Tipo</th>
+                <th>Uso</th>
+                <th>Precio</th>
+                <th>Propietario</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var inmueble in Model)
+        {
+            <tr>
+                <td>@inmueble.Direccion</td>
+                <td>@inmueble.TipoInmueble?.Descripcion</td>
+                <td>@inmueble.Uso</td>
+                <td>@inmueble.Precio</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No hay inmuebles disponibles en las fechas seleccionadas.</p>
+}

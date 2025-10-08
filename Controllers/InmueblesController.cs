@@ -21,6 +21,7 @@ namespace Laboratorio.Controllers
             var inmuebles = await _context.Inmuebles
                 .Include(i => i.Propietario)
                 .Include(i => i.TipoInmueble)
+                .Where(i => i.Estado == "Disponible")
                 .ToListAsync();
             return View(inmuebles);
         }

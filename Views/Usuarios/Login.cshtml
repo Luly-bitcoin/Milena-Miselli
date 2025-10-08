@@ -18,14 +18,15 @@
     }
     .conteiner {
         width: 50%;
-        max-width: 300px;
+        max-width: 350px;
         padding: 20px;
         background-color: #212529;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         border-radius: 8px;
         color: white;
         display: flex;
-        justify-content: center;
+        flex-direction: column;
+        align-items: center;
     }
     input{
         width: 100%;
@@ -43,33 +44,51 @@
         border: none;
         border-radius: 4px;
         cursor: pointer;
+        margin-bottom: 10px;
     }
     h2 {
         text-align: center;
         margin-bottom: 20px;
     }
+    .link-btn {
+        background: none;
+        border: none;
+        color: #0d6efd;
+        cursor: pointer;
+        padding: 0;
+        margin-top: 5px;
+        text-decoration: underline;
+        font-size: 0.9em;
+    }
+    .error-message {
+        color: #ff4d4d;
+        margin-top: 10px;
+        text-align: center;
+    }
 </style>
 </head>
 <body>
 <div class="conteiner">
-    <div class="login-container">
-        <h2>Iniciar Sesión</h2>
+    <h2>Iniciar Sesión</h2>
 
-        <form asp-action="Login" method="post">
-            <label>Email</label>
-            <input type="email" name="email" placeholder="tucorreo@dominio.com" required />
-            <br><br>
-            <label>Contraseña</label>
-            <input type="password" name="contrasena" placeholder="********" required />
-            <br><br>
-            <button type="submit">Ingresar</button>
-        </form>
+    <form asp-action="Login" method="post">
+        <label>Email</label>
+        <input type="email" name="email" placeholder="tucorreo@dominio.com" required />
 
-        @if(ViewBag.Error != null)
-        {
-            <div class="error-message">@ViewBag.Error</div>
-        }
-    </div>
+        <label>Contraseña</label>
+        <input type="password" name="contrasena" placeholder="********" required />
+
+        <button type="submit">Ingresar</button>
+    </form>
+
+    @if(ViewBag.Error != null)
+    {
+        <div class="error-message">@ViewBag.Error</div>
+    }
+
+    <button class="link-btn" onclick="location.href='@Url.Action("Create", "Usuarios")'">Crear Usuario</button>
+    <button class="link-btn" onclick="location.href='@Url.Action("ForgotPassword", "Usuarios")'">Olvidé mi contraseña</button>
+    <button class="link-btn" onclick="location.href='@Url.Action("Index", "Home")'">Volver al inicio</button>
 </div>
 </body>
 </html>
