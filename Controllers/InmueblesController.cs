@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Laboratorio.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Laboratorio.Controllers
 {
@@ -74,26 +75,23 @@ namespace Laboratorio.Controllers
         // GET: Inmuebles/Create
         public async Task<IActionResult> Create()
         {
-            ViewBag.Propietarios = await _context.Propietarios.ToListAsync();
-            ViewBag.TiposInmueble = await _context.TiposInmueble.ToListAsync();
-            return View();
-        }
+            var propietarios = await _context.Propietarios.ToListAsync();
+            ViewBag.Propietarios = propietarios
+                .Select(p => new SelectListItem
+                {
+                    Value = p.IdPropietario.ToString(),
+                    Text = p.Nombre + " " + p.Apellido
+                }).ToList();
 
-        // POST: Inmuebles/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Inmueble inmueble)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(inmueble);
-                await _context.SaveChangesAsync();
-                TempData["Success"] = "Inmueble creado exitosamente.";
-                return RedirectToAction(nameof(Index));
-            }
-            ViewBag.Propietarios = await _context.Propietarios.ToListAsync();
-            ViewBag.TiposInmueble = await _context.TiposInmueble.ToListAsync();
-            return View(inmueble);
+            var tipos = await _context.TiposInmueble.ToListAsync();
+            ViewBag.TiposInmueble = tipos
+                .Select(t => new SelectListItem
+                {
+                    Value = t.IdTipo.ToString(),
+                    Text = t.Descripcion
+                }).ToList();
+
+            return View();
         }
 
         // GET: Inmuebles/Edit/5

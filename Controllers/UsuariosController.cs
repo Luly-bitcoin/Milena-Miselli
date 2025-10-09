@@ -143,7 +143,7 @@ namespace Laboratorio.Controllers
         {
             var userId = int.Parse(User.FindFirst("IdUsuario")?.Value ?? "0");
             var usuario = await _context.Usuarios.FindAsync(userId);
-            
+
             if (usuario == null || usuario.Contrasena != contrasenaActual)
             {
                 TempData["Error"] = "La contraseña actual es incorrecta.";
@@ -163,21 +163,21 @@ namespace Laboratorio.Controllers
         {
             var userId = int.Parse(User.FindFirst("IdUsuario")?.Value ?? "0");
             var usuario = await _context.Usuarios.FindAsync(userId);
-            
+
             if (usuario == null) return NotFound();
 
             if (avatar != null && avatar.Length > 0)
             {
                 var fileName = $"avatar_{userId}_{DateTime.Now.Ticks}.jpg";
                 var path = Path.Combine("wwwroot/images/avatars", fileName);
-                
+
                 Directory.CreateDirectory(Path.GetDirectoryName(path)!);
-                
+
                 using (var stream = new FileStream(path, FileMode.Create))
                 {
                     await avatar.CopyToAsync(stream);
                 }
-                
+
                 usuario.Avatar = $"/images/avatars/{fileName}";
                 _context.Usuarios.Update(usuario);
                 await _context.SaveChangesAsync();
@@ -193,14 +193,14 @@ namespace Laboratorio.Controllers
         {
             var userId = int.Parse(User.FindFirst("IdUsuario")?.Value ?? "0");
             var usuario = await _context.Usuarios.FindAsync(userId);
-            
+
             if (usuario == null) return NotFound();
 
             usuario.Avatar = null;
             _context.Usuarios.Update(usuario);
             await _context.SaveChangesAsync();
             TempData["Success"] = "Avatar eliminado exitosamente.";
-            
+
             return RedirectToAction("Perfil");
         }
     }
