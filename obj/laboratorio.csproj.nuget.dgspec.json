@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ville\\OneDrive\\Documentos\\GitHub\\Milena-Miselli\\laboratorio.csproj": {}
+    "c:\\Users\\ville\\OneDrive\\Documentos\\GitHub\\Milena-Miselli\\laboratorio.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ville\\OneDrive\\Documentos\\GitHub\\Milena-Miselli\\laboratorio.csproj": {
+    "c:\\Users\\ville\\OneDrive\\Documentos\\GitHub\\Milena-Miselli\\laboratorio.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ville\\OneDrive\\Documentos\\GitHub\\Milena-Miselli\\laboratorio.csproj",
+        "projectUniqueName": "c:\\Users\\ville\\OneDrive\\Documentos\\GitHub\\Milena-Miselli\\laboratorio.csproj",
         "projectName": "laboratorio",
-        "projectPath": "C:\\Users\\ville\\OneDrive\\Documentos\\GitHub\\Milena-Miselli\\laboratorio.csproj",
+        "projectPath": "c:\\Users\\ville\\OneDrive\\Documentos\\GitHub\\Milena-Miselli\\laboratorio.csproj",
         "packagesPath": "C:\\Users\\ville\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ville\\OneDrive\\Documentos\\GitHub\\Milena-Miselli\\obj\\",
+        "outputPath": "c:\\Users\\ville\\OneDrive\\Documentos\\GitHub\\Milena-Miselli\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ville\\AppData\\Roaming\\NuGet\\NuGet.Config"

@@ -1,11 +1,10 @@
 using Laboratorio.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authentication.Cookies; // <- agregar esto
+using Microsoft.AspNetCore.Authentication.Cookies; 
 using MySqlConnector;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddControllersWithViews();
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
@@ -13,7 +12,6 @@ builder.Services.AddDbContext<InmobiliariaDbContext>(
     options => options.UseMySql(connectionString,
         ServerVersion.AutoDetect(connectionString)));
 
-// --- Agregar autenticación por cookies ---
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
@@ -24,16 +22,13 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 
 var app = builder.Build();
 
-// --- Inicialización automática de la base de datos ---
 using (var scope = app.Services.CreateScope())
 {
     var context = scope.ServiceProvider.GetRequiredService<InmobiliariaDbContext>();
     try
     {
-        // Verificar si la base de datos existe y tiene datos
         if (!context.Database.CanConnect() || !context.Usuarios.Any())
         {
-            // Ejecutar el script SQL de inicialización
             await InicializarBaseDeDatos(connectionString);
         }
     }
@@ -54,18 +49,15 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-// --- Habilitar autenticación ---
 app.UseAuthentication();
 app.UseAuthorization();
 
-// Cambiar ruta por defecto a Usuarios/Login
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Usuarios}/{action=Login}/{id?}");
 
 app.Run();
 
-// --- Método para inicializar la base de datos ---
 static async Task InicializarBaseDeDatos(string connectionString)
 {
     try
@@ -73,10 +65,8 @@ static async Task InicializarBaseDeDatos(string connectionString)
         using var connection = new MySqlConnection(connectionString);
         await connection.OpenAsync();
         
-        // Leer el archivo SQL
         var sqlScript = await File.ReadAllTextAsync("mydb.sql");
         
-        // Dividir el script en comandos individuales
         var commands = sqlScript.Split(new[] { ";\r\n", ";\n" }, StringSplitOptions.RemoveEmptyEntries)
             .Where(cmd => !string.IsNullOrWhiteSpace(cmd) && !cmd.StartsWith("--"))
             .Select(cmd => cmd.Trim())
