@@ -55,7 +55,7 @@ namespace Laboratorio.Controllers
             return RedirectToAction("Login");
         }
 
-        [Authorize]
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Index()
         {
             var usuarios = await _context.Usuarios.ToListAsync();
